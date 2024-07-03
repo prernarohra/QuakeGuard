@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Earthquake by Year</title>
+    <!-- Including DataTables CSS -->
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.css"
+    />
+    <!-- Including DataTables Responsive CSS -->
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdn.datatables.net/responsive/2.2.9/css/responsive.dataTables.min.css"
+    />
+    <!-- Including jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <!-- Including DataTables JS -->
+    <script
+      type="text/javascript"
+      charset="utf8"
+      src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.js"
+    ></script>
+    <!-- Including DataTables Responsive JS -->
+    <script
+      type="text/javascript"
+      charset="utf8"
+      src="https://cdn.datatables.net/responsive/2.2.9/js/dataTables.responsive.min.js"
+    ></script>
+    <!-- Including PapaParse -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
+    <style>
+      .content-wrapper {
+        max-width: 1200px;
+        margin: auto;
+        padding: 20px;
+      }
+      /* Loading spinner styles */
+      #loadingSpinner {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 9999;
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Loading spinner -->
+    <div id="loadingSpinner">
+      <img
+        src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/0.16.1/images/loader-large.gif"
+        alt="Loading..."
+      />
+    </div>
+
+    <section class="dataset-viewing">
+      <div class="content-wrapper">
+        <h2>Deadliest Earthquakes by Year</h2>
+        <p>Click below to download the dataset:</p>
+        <a
+          href="/static/Deadliest earthquakes by year.csv"
+          download="Deadliest Earthquakes by Year.csv"
+          >Download Deadliest Earthquakes by Year.csv</a
+        >
+        <br /><br />
+        <table id="datasetTable" class="display nowrap" style="width: 100%">
+          <thead>
+            <tr id="tableHeader">
+              <!-- Table headers will be appended here -->
+            </tr>
+          </thead>
+          <tbody id="tableBody">
+            <!-- Table data will be appended here -->
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <script>
+      // Function to show loading spinner
+      function showLoadingSpinner() {
+        $("#loadingSpinner").show();
+      }
+
+      // Function to hide loading spinner
+      function hideLoadingSpinner() {
+        $("#loadingSpinner").hide();
+      }
+
+      // Function to fetch and display the CSV data
+      $(document).ready(function () {
+        // Show loading spinner while loading data
+        showLoadingSpinner();
+
+        $.ajax({
+          url: "/static/Deadliest earthquakes by year.csv",
+          dataType: "text",
+        })
+          .done(function (data) {
+            hideLoadingSpinner(); // Hide loading spinner once data is loaded
+
+            Papa.parse(data, {
+              header: true,
+              complete: function (results) {
+                const headers = results.meta.fields;
+                let headerHtml = "";
+                headers.forEach((header) => {
+                  headerHtml += "<th>" + header + "</th>";
+                });
+                $("#tableHeader").html(headerHtml);
+
+                let bodyHtml = "";
+                const numVisibleRows = 100; // Number of rows to display at once
+                for (
+                  let i = 0;
+                  i < numVisibleRows && i < results.data.length;
+                  i++
+                ) {
+                  const row = results.data[i];
+                  bodyHtml += "<tr>";
+                  headers.forEach((header) => {
+                    bodyHtml += "<td>" + row[header] + "</td>";
+                  });
+                  bodyHtml += "</tr>";
+                }
+                $("#tableBody").html(bodyHtml);
+
+                // Initialize DataTable with pagination and lazy loading
+                $("#datasetTable").DataTable({
+                  responsive: true,
+                  paging: true,
+                  pagingType: "simple_numbers",
+                  lengthMenu: [
+                    [10, 25, 50, -1],
+                    [10, 25, 50, "All"],
+                  ],
+                  scrollX: true,
+                  language: {
+                    processing: "Loading data...",
+                  },
+                  columnDefs: [
+                    { width: "100px", targets: 0 },
+                    { width: "150px", targets: 1 },
+                    { width: "100px", targets: 2 },
+                    { width: "150px", targets: 3 },
+                    { width: "100px", targets: 4 },
+                    { width: "150px", targets: 5 },
+                    { width: "100px", targets: 6 },
+                    { width: "150px", targets: 7 },
+                    { width: "100px", targets: 8 },
+                    { targets: [5, 6, 7, 8], visible: false }, // Hide some columns initially
+                  ],
+                  dom: "Bfrtip",
+                  buttons: [
+                    "colvis", // Column visibility button
+                  ],
+                  processing: true,
+                  deferRender: true,
+                  scrollY: 400, // Height of the table
+                  scrollCollapse: true,
+                  scroller: true,
+                });
+              },
+            });
+          })
+          .fail(function () {
+            hideLoadingSpinner(); // Hide loading spinner if data loading fails
+            alert("Error: CSV file not found.");
+          });
+      });
+    </script>
+  </body>
+</html>

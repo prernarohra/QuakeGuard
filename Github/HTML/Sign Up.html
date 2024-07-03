@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sign Up</title>
+
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='Sign_up.css') }}"
+    />
+    <script src="{{ url_for('static', filename='sign_up.js') }}"></script>
+  </head>
+  <body>
+    <div class="container">
+      <div class="form">
+        <h1 class="header">Sign Up</h1>
+        <form
+          id="signup-form"
+          action="{{ url_for('submit_signup') }}"
+          method="POST"
+        >
+          <div class="form-group">
+            <label for="firstName" class="label">First Name*</label>
+            <input
+              type="text"
+              id="firstName"
+              name="firstName"
+              class="input"
+              placeholder="Enter your first name"
+            />
+            <span class="error-message" id="firstNameError"></span>
+          </div>
+          <div class="form-group">
+            <label for="lastName" class="label">Last Name*</label>
+            <input
+              type="text"
+              id="lastName"
+              name="lastName"
+              class="input"
+              placeholder="Enter your last name"
+            />
+            <span class="error-message" id="lastNameError"></span>
+          </div>
+          <div class="form-group">
+            <label for="email" class="label">Email Address*</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              class="input"
+              placeholder="Enter your email address"
+            />
+            <span class="error-message" id="emailError"></span>
+          </div>
+          <div class="form-group">
+            <label for="password" class="label">Password*</label>
+            <input
+              type="password"
+              id="password"
+              name="password"
+              class="input"
+              placeholder="Enter your password"
+            />
+            <span class="error-message" id="passwordError"></span>
+          </div>
+          <div class="form-group">
+            <label for="confirmPassword" class="label">Confirm Password*</label>
+            <input
+              type="password"
+              id="confirmPassword"
+              name="confirmPassword"
+              class="input"
+              placeholder="Re-enter your password"
+            />
+            <span class="error-message" id="confirmPasswordError"></span>
+          </div>
+          <button type="submit" class="button">Create Account</button>
+
+          <a href="http://127.0.0.1:5000/login" class="login-button">Login</a>
+        </form>
+      </div>
+      <div class="hand">
+        <img
+          src="{{ url_for('static', filename='hand_map_signup.png') }}"
+          alt="Hand pointing at map"
+        />
+      </div>
+    </div>
+  </body>
+</html>

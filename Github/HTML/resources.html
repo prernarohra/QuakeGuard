@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='resources.css') }}"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script>
+      // Function to toggle dropdown
+      function toggleDropdown() {
+        var dropdown = document.getElementById("dropdownContent");
+        dropdown.style.display =
+          dropdown.style.display === "block" ? "none" : "block";
+      }
+    </script><script>
+  document.addEventListener('DOMContentLoaded', function () {
+    var learnMoreLink = document.querySelector('.cta-button');
+    var earthquakeBasicsSection = document.querySelector('.earthquake-basics');
+
+    learnMoreLink.addEventListener('click', function (event) {
+      event.preventDefault();
+      earthquakeBasicsSection.scrollIntoView({ behavior: 'smooth' });
+    });
+  });
+  
+</script>
+
+    <title>resources</title>
+  </head>
+  <body>
+    <div class="navbar">
+      <a href="http://127.0.0.1:5000/" class="Home">Home</a>
+      <a href="http://127.0.0.1:5000/about" class="About">About Us</a>
+      <a href="http://127.0.0.1:5000/predictor" class="Predictor">Predictor</a>
+      <a href="http://127.0.0.1:5000/solutions" class="Solution">Solution</a>
+      <a href="http://127.0.0.1:5000/destruction" class="Destruction">Damage</a>
+      <a href="http://127.0.0.1:5000/resources" class="Resources">Resources</a>
+      <a href="http://127.0.0.1:5000/insurance" class="insurance">Insurance</a>
+      <a href="http://127.0.0.1:5000/contact" class="contact">Contact Us</a>
+
+      {% if 'email' in session %}
+      <div class="user-initials-circle" onclick="toggleDropdown()">
+        <div class="user-initials">{{ session['email'][0] | upper}}</div>
+      </div>
+      <div class="dropdown-content" id="dropdownContent">
+        <a href="{{ url_for('logout') }}"
+          ><i class="fas fa-sign-out-alt"></i> Sign Out</a
+        >
+      </div>
+
+      {% else %}
+      <a href="{{ url_for('sign_up') }}" id="signupBtn" class="signup"
+        ><div class="signup-wrapper">Sign up</div></a
+      >
+      <a href="{{ url_for('login') }}" id="loginBtn" class="login"
+        ><div class="login-wrapper">Login</div></a
+      >
+
+      {% endif %}
+
+      <a href="http://127.0.0.1:5000/">
+        <img
+          class="image"
+          src="{{ url_for('static', filename='fyp_light logo.svg') }}"
+        />
+      </a>
+    </div>
+    <section class="banner">
+      <div class="banner-overlay"></div>
+      <div class="banner-content">
+        <h1>Explore the World of Earthquakes</h1>
+        <p>Discover the science, causes, and effects of earthquakes</p>
+        <a href="#learn-more" class="cta-button">Learn More</a>
+      </div>
+    </section>
+
+    <section class="earthquake-basics">
+      <div class="content-wrapper">
+        <h2>Get To Know About Earthquakes</h2>
+        <p>
+          Earthquakes are caused by the sudden release of energy stored in the
+          Earth's crust. This energy is typically released along faults, which
+          are fractures in the Earth's surface where movement occurs.
+        </p>
+        <div id="map" style="height: 400px"></div>
+
+        <p>
+          When stress builds up along a fault and exceeds the strength of the
+          rocks, it causes them to break and move. This movement generates
+          seismic waves, which propagate through the Earth and cause the ground
+          to shake.
+        </p>
+        <p>
+          The severity of an earthquake is measured using the Richter scale or
+          the moment magnitude scale. These scales quantify the amount of energy
+          released by an earthquake and provide a numerical value known as the
+          earthquake's magnitude.
+        </p>
+        <p>
+          Earthquakes can have devastating effects, including ground shaking,
+          surface rupture, landslides, tsunamis, and secondary hazards such as
+          fires and liquefaction.
+        </p>
+        <p>
+          Understanding the basics of earthquakes is crucial for preparedness
+          and mitigation efforts to minimize their impact on communities and
+          infrastructure.
+        </p>
+      </div>
+    </section>
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script>
+      var map = L.map("map").setView([0, 0], 2);
+
+      L.tileLayer(
+        "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png?lang=en",
+        {
+          attribution:
+            '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+        }
+      ).addTo(map);
+
+      fetch(
+        "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_day.geojson"
+      )
+        .then((response) => response.json())
+        .then((data) => {
+          L.geoJSON(data, {
+            pointToLayer: function (feature, latlng) {
+              // Creating a circle marker for each earthquake
+              return L.circleMarker(latlng, {
+                radius: 5,
+                fillColor: "#ff0000",
+                color: "#000",
+                weight: 1,
+                opacity: 1,
+                fillOpacity: 0.8,
+              });
+            },
+          }).addTo(map);
+
+          // Adding legend
+          var legend = L.control({ position: "bottomright" });
+
+          legend.onAdd = function (map) {
+            var div = L.DomUtil.create("div", "legend");
+            div.innerHTML +=
+              '<i style="background:#ff0000"></i> Earthquake Epicenter';
+            return div;
+          };
+
+          legend.addTo(map);
+        });
+    </script>
+    <section
+      class="earthquake-faults"
+      style="
+        background-image: url('/static/fault.PNG');
+        background-repeat: no-repeat;
+        background-size: cover;
+      "
+    >
+      <h1>Earthquake Faults</h1>
+      <p>
+        The three main types of faults are normal faults, reverse faults, and
+        strike-slip faults.
+      </p>
+      <div class="fault-card">
+        <div class="fault-content">
+          <h2>Normal Fault</h2>
+          <p>
+            A normal fault occurs when two blocks of rock are pulled apart by
+            tensional forces. The block above the fault moves downward relative
+            to the block below the fault. Normal faults are common in areas
+            where the crust is being extended.
+          </p>
+        </div>
+        <div class="fault-image">
+          <img src="/static/normalf.PNG" alt="Normal Fault Image" />
+        </div>
+      </div>
+      <div class="fault-card">
+        <div class="reverse-fault-image">
+          <img src="/static/reverse.PNG" alt="Reverse Fault Image" />
+        </div>
+        <div class="reverse-fault-content">
+          <h2>Reverse Fault</h2>
+          <p>
+            A reverse fault occurs when two blocks of rock are forced together
+            by compressional forces. The block above the fault moves upward
+            relative to the block below the fault. Reverse faults are common in
+            areas where the crust is being compressed.
+          </p>
+        </div>
+      </div>
+      <div class="fault-card">
+        <div class="fault-content">
+          <h2>Strike-Slip Fault</h2>
+          <p>
+            A strike-slip fault occurs when two blocks of rock slide
+            horizontally past each other due to shear forces. The movement along
+            strike-slip faults is predominantly horizontal. The San Andreas
+            Fault in California is a famous example of a strike-slip fault.
+          </p>
+        </div>
+        <div class="fault-image">
+          <img src="/static/strikeslip.PNG" alt="Strike-Slip Fault Image" />
+        </div>
+      </div>
+    </section>
+    <section class="earthquake-magnitude-intensity">
+      <div class="content-wrapper">
+        <h2>Understanding Earthquake Magnitude and Intensity</h2>
+
+        <div class="magnitude-intensity-info">
+          <div class="info-card">
+            <h3>Earthquake Magnitude</h3>
+            <p>
+              Magnitude measures the energy released at the source of the
+              earthquake. It is typically expressed on logarithmic scales such
+              as the Richter scale or the moment magnitude scale.
+            </p>
+           
+            <img src="/static/richter.PNG" alt="Magnitude Image" />
+          </div>
+          <div class="info-card">
+            <h3>Earthquake Intensity</h3>
+            <p>
+              Earthquake intensity refers to the severity of ground shaking and
+              the impact of an earthquake on structures, infrastructure, and the
+              environment. The Mercalli intensity scale assesses the intensity
+              of an earthquake's effects on the Earth's surface and human-made
+              structures. It is based on observed damage and human perception.
+            </p>
+            
+            <h3>Mercalli Intensity Scale</h3>
+            <img src="/static/intemsitysc.PNG" alt="Intensity Image" />
+          </div>
+        </div>
+      </div>
+    </section>
+    <section>
+        <div class="interactive-cards">
+         
+          <div class="card">
+            <div class="card-header">
+              <h3>Measuring Earthquake Magnitude</h3>
+            </div>
+            <div class="card-body">
+              <div class="video-container">
+            
+                <video id="video1" src="/static/How to Determine Richter Magnitude.mp4" controls></video>
+              </div>
+              <p>Learn how to determine an earthquake's Richter magnitude.</p>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header">
+              <h3>Understanding Mercalli Intensity Scale</h3>
+            </div>
+            <div class="card-body">
+              <div class="video-container">
+             
+                <video id="video2" src="/static/Modified Mercalli Intensity Scale.mp4" controls></video>
+              </div>
+              <p>Explore the Mercalli intensity scale and how it measures the effects of earthquakes on people, buildings, and the environment.</p>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header">
+              <h3>Impact of An Earthquake</h3>
+            </div>
+            <div class="card-body">
+              <div class="video-container">
+              
+                <video id="video3" src="/static/What determines the impact of an earthquake_.mp4" controls></video>
+              </div>
+              <p>Discover the factors that determine the impact of an earthquake.</p>
+            </div>
+          </div>
+        </div>
+      <section>
+      
+
+
+<section class="earthquake-safety">
+  <div class="content-wrapper">
+    <h2>Earthquake Safety Tips</h2>
+
+    <div class="safety-precautions">
+      <div class="precaution-card">
+        
+        <h3>Prepare an Emergency Kit</h3>
+        <p>It's essential to have an emergency kit ready in case of earthquakes or other disasters. Include water, non-perishable food, a flashlight, a first aid kit, and any necessary medications.Additionally, consider including important documents, such as identification emergency contact information, in your emergency kit. </p><img src="/static/kitearth.PNG" alt="Emergency Exit Plan" />
+      </div>
+      <div class="precaution-card">
+        
+        <h3>Drop, Cover, and Hold On</h3>
+        <p>When an earthquake occurs, remember to drop to the ground, take cover under a sturdy piece of furniture or against an interior wall, and hold on until the shaking stops. This protects you from falling objects and reduces the risk of injury. After the shaking stops, be cautious of potential aftershocks.</p><img src="/static/drop,cover,hold.PNG" alt="Emergency Exit Plan" />
+      </div>
+      <div class="precaution-card">
+       
+        <h3>Secure Heavy Furniture</h3>
+        <p>Secure heavy furniture, such as bookcases and appliances, to the wall using brackets or straps. This prevents them from tipping over during an earthquake and causing injuries or damage.</p> <img src="/static/securingfurniture.PNG" alt="Secure Furniture" />
+      </div>
+      <div class="precaution-card">
+       
+        <h3>Develop an Emergency Exit Plan</h3>
+        <p>Plan and practice evacuation routes from your home or workplace to safe locations. Ensure all family members or coworkers know the plan and have a designated meeting point.</p> <img src="/static/emergebcy plan.jpg" alt="Emergency Exit Plan" />
+      </div>
+      
+    </div>
+
+
+    <div class="prevention-tips">
+      <h2>Earthquake Damage Prevention Tips</h2>
+      <div class="prevention-card">
+        <h3>Regular Home Inspections</h3>
+        <p>Regularly inspect your home for structural weaknesses, such as cracks in walls or foundations, and repair them promptly.</p>
+        
+      </div>
+      <div class="prevention-card">
+        <h3>Identify Safe Spots</h3>
+        <p>Identify safe spots in each room where you can take cover during an earthquake, such as under sturdy tables or desks.</p>
+        
+      </div>
+      <div class="prevention-card">
+        <h3>Practice Earthquake Drills</h3>
+        <p>Practice earthquake drills with your family or household members to ensure everyone knows what to do in case of an earthquake.</p>
+      
+      </div>
+      <div class="prevention-card">
+        <h3>Secure Hazardous Items</h3>
+        <p>Secure hazardous items in your home, such as chemicals and flammable materials, to prevent spills or fires during an earthquake.</p>
+        
+      </div>
+      <div class="prevention-card">
+        <h3>Strengthen Building Structures</h3>
+        <p>Consider retrofitting or reinforcing your home or workplace to improve its resistance to earthquakes. Consult with a professional engineer for guidance on structural improvements.</p>
+       
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<section>
+  <div class="dcontent-wrapper">
+      <h2 class="dataset-header">Explore Our Latest Dataset</h2>
+      <p>Click the button below to view and download our comprehensive dataset.</p>
+      <button type="button" class="btn btn-primary" onclick="toggleModal()">View Dataset</button>
+  </div>
+</section>
+
+<!-- Modal -->
+<div id="datasetModal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="toggleModal()">&times;</span>
+    <h2>Select a Dataset</h2>
+    <ul>
+        <li><a href="{{ url_for('intensityds') }}">Intensity Dataset</a></li>
+        <li><a href="{{ url_for('significantds') }}">Earthquake Magnitude Data</a></li>
+        <li><a href="{{ url_for('Earthquake_by_Year') }}">Earthquake by Year</a></li>
+    </ul>
+  </div>
+</div>
+<script>
+  function toggleModal() {
+    var modal = document.getElementById("datasetModal");
+    modal.style.display = (modal.style.display === "block") ? "none" : "block";
+  }
+
+  // Closing the modal when clicking outside of it
+  window.onclick = function(event) {
+    var modal = document.getElementById("datasetModal");
+    if (event.target === modal) {
+      modal.style.display = "none";
+    }
+  }
+</script>
+
+<section class="footer">
+  <img
+    src="{{ url_for('static', filename='footer.png') }}"
+    alt="Footer Image"
+  />
+  <div class="overlay"></div>
+  <div class="footer-content">
+    <div class="text-wrapper-11">About Us</div>
+    <div class="text-wrapper-12">Predictor</div>
+    <div class="text-wrapper-13">Solutions</div>
+
+    <div class="text-wrapper-14">Insurance</div>
+
+    <div class="text-wrapper-15">Get In Touch</div>
+
+    <a href="http://127.0.0.1:5000/about" class="text-wrapper-16"
+      >About Quake Guardian</a
+    >
+    <a href="http://127.0.0.1:5000/predictor" class="text-wrapper-17"
+      >Earthquake Intensity Predictor</a
+    >
+    <a href="http://127.0.0.1:5000/solutions" class="how-we-do-it"
+      >Solutions</a
+    ><a href="http://127.0.0.1:5000/destruction" class="damagetext"
+    >Damage Predictor</a
+  >
+  <a href="http://127.0.0.1:5000/resources" class="resourcestext"
+    >Resources</a
+  >
+    
+
+    <a href="http://127.0.0.1:5000/insurance" class="text-wrapper-18"
+      >Packages</a
+    >
+
+    <a href="http://127.0.0.1:5000/contact" class="contact-us-www"
+      >Contact Us<br />www.quakeguardian.com</a
+    >
+  </div>
+
+  <div class="grey-footer">
+    <div class="copyright">
+      &copy; 2024 Quake Guardian. All rights reserved.
+    </div>
+  </div>
+</div>
+</section>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    
+    var video1 = document.getElementById('video1');
+    var video2 = document.getElementById('video2');
+    var video3 = document.getElementById('video3');
+    
+  
+    video1.pause();
+    video2.pause();
+    video3.pause();
+    
+    
+    video1.addEventListener('loadeddata', function () {
+      video1.pause();
+    });
+    video2.addEventListener('loadeddata', function () {
+      video2.pause();
+    });
+
+    video3.addEventListener('loadeddata', function () {
+      video3.pause();
+    });
+    
+  });
+</script>
+ </body>
+</html>

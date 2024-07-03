@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='destruction.css') }}"
+    />
+    <script src="{{ url_for('static', filename='destruction.js') }}"></script>
+
+    <script>
+      // Function to toggle dropdown
+      function toggleDropdown() {
+        var dropdown = document.getElementById("dropdownContent");
+        dropdown.style.display =
+          dropdown.style.display === "block" ? "none" : "block";
+      }
+    </script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    />
+    <title>Destruction</title>
+  </head>
+  <body>
+    <div class="navbar">
+      <a href="http://127.0.0.1:5000/" class="Home">Home</a>
+      <a href="http://127.0.0.1:5000/about" class="About">About Us</a>
+      <a href="http://127.0.0.1:5000/predictor" class="Predictor">Predictor</a>
+      <a href="http://127.0.0.1:5000/solutions" class="Solution">Solution</a>
+
+      <a href="http://127.0.0.1:5000/destruction" class="Destruction">Damage</a>
+
+      <a href="http://127.0.0.1:5000/resources" class="Resources">Resources</a>
+      <a href="http://127.0.0.1:5000/insurance" class="insurance">Insurance</a>
+      <a href="http://127.0.0.1:5000/contact" class="contact">Contact Us</a>
+
+      {% if 'email' in session %}
+      <div class="user-initials-circle" onclick="toggleDropdown()">
+        <div class="user-initials">{{ session['email'][0] | upper}}</div>
+      </div>
+      <div class="dropdown-content" id="dropdownContent">
+        <a href="{{ url_for('logout') }}"
+          ><i class="fas fa-sign-out-alt"></i> Sign Out</a
+        >
+      </div>
+
+      {% else %}
+      <a href="{{ url_for('sign_up') }}" id="signupBtn" class="signup"
+        ><div class="signup-wrapper">Sign up</div></a
+      >
+      <a href="{{ url_for('login') }}" id="loginBtn" class="login"
+        ><div class="login-wrapper">Login</div></a
+      >
+
+      {% endif %}
+
+      <a href="http://127.0.0.1:5000/">
+        <img
+          class="image"
+          src="{{ url_for('static', filename='fyp_light logo.svg') }}"
+        />
+      </a>
+    </div>
+
+    <div class="section2">
+      <div class="card">
+        <h2>Destruction Predictor</h2>
+        <div class="content">
+          <div class="input-container">
+            <label for="intensitySelect">Earthquake Intensity:</label>
+            <select id="intensitySelect" name="intensitySelect">
+              <option value="">Select intensity range</option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+              <option value="6">6</option>
+              <option value="7">7</option>
+              <option value="8">8</option>
+              <option value="9">9</option>
+              <option value="10">10</option>
+              <option value="11">11</option>
+              <option value="12">12</option></select
+            ><label for="magnitude">Magnitude:</label>
+            <input
+              type="number"
+              id="magnitude"
+              name="magnitude"
+              step="0.1"
+              min="0"
+              max="9"
+              required
+            />
+
+            <label for="depth">Depth Range:</label>
+            <input
+              type="number"
+              id="depth"
+              name="depth"
+              placeholder="Enter depth range"
+            />
+
+            <label for="Victims Reaction">Victims Reaction:</label>
+
+            <select id="victims" name="Victims">
+              <option value="">Select reaction range</option>
+              <option value="0">0</option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+              <option value="6">6</option>
+              <option value="7">7</option>
+              <option value="8">8</option>
+              <option value="9">9</option>
+              <option value="10">10</option>
+              <option value="11">11</option>
+            </select>
+          </div>
+          <button type="button" onclick="calculateDestructionEstimate()">
+            Calculate
+          </button>
+        </div>
+        <div class="output-container">
+          <h3>Estimated Destruction Level:</h3>
+          <progress id="destruction-progress" max="12" value="0"></progress>
+          <p id="destruction-label">Destruction Level: 0</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer">
+      <img
+        src="{{ url_for('static', filename='footer.png') }}"
+        alt="Footer Image"
+      />
+      <div class="overlay"></div>
+      <div class="footer-content">
+        <div class="text-wrapper-11">About Us</div>
+        <div class="text-wrapper-12">Predictor</div>
+        <div class="text-wrapper-13">Solutions</div>
+
+        <div class="text-wrapper-14">Insurance</div>
+
+        <div class="text-wrapper-15">Get In Touch</div>
+
+        <a href="http://127.0.0.1:5000/about" class="text-wrapper-16"
+          >About Quake Guardian</a
+        >
+        <a href="http://127.0.0.1:5000/predictor" class="text-wrapper-17"
+          >Earthquake Intensity Predictor</a
+        >
+        <a href="http://127.0.0.1:5000/solutions" class="how-we-do-it"
+          >Solutions</a
+        >
+        <a href="http://127.0.0.1:5000/destruction" class="damagetext"
+          >Damage Predictor</a
+        >
+        <a href="http://127.0.0.1:5000/resources" class="resourcestext"
+          >Resources</a
+        >
+
+        <a href="http://127.0.0.1:5000/insurance" class="text-wrapper-18"
+          >Packages</a
+        >
+
+        <a href="http://127.0.0.1:5000/contact" class="contact-us-www"
+          >Contact Us<br />www.quakeguardian.com</a
+        >
+      </div>
+
+      <div class="grey-footer">
+        <div class="copyright">
+          &copy; 2024 Quake Guardian. All rights reserved.
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

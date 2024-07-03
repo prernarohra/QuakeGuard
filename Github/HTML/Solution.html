@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='Solution.css') }}"
+    />
+
+    <script>
+      // Function to toggle dropdown
+      function toggleDropdown() {
+        var dropdown = document.getElementById("dropdownContent");
+        dropdown.style.display =
+          dropdown.style.display === "block" ? "none" : "block";
+      }
+    </script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    />
+  </head>
+  <body>
+    <div class="solutions-minimizing">
+      <div class="div">
+        <div class="box"><div class="intensity-scale"></div></div>
+        <div class="navbar">
+          <a href="http://127.0.0.1:5000/" class="Home">Home</a>
+          <a href="http://127.0.0.1:5000/about" class="About">About Us</a>
+          <a href="http://127.0.0.1:5000/predictor" class="Predictor"
+            >Predictor</a
+          >
+          <a href="http://127.0.0.1:5000/solutions" class="Solution"
+            >Solution</a
+          >
+          <a href="http://127.0.0.1:5000/destruction" class="Destruction"
+            >Damage</a
+          >
+          <a href="http://127.0.0.1:5000/resources" class="Resources"
+            >Resources</a
+          >
+          <a href="http://127.0.0.1:5000/insurance" class="insurance"
+            >Insurance</a
+          >
+          <a href="http://127.0.0.1:5000/contact" class="contact">Contact Us</a>
+
+          {% if 'email' in session %}
+          <div class="user-initials-circle" onclick="toggleDropdown()">
+            <div class="user-initials">{{ session['email'][0] | upper}}</div>
+          </div>
+          <div class="dropdown-content" id="dropdownContent">
+            <a href="{{ url_for('logout') }}"
+              ><i class="fas fa-sign-out-alt"></i> Sign Out</a
+            >
+          </div>
+
+          {% else %}
+          <a href="{{ url_for('sign_up') }}" id="signupBtn" class="signup"
+            ><div class="signup-wrapper">Sign up</div></a
+          >
+          <a href="{{ url_for('login') }}" id="loginBtn" class="login"
+            ><div class="login-wrapper">Login</div></a
+          >
+
+          {% endif %}
+
+          <a href="http://127.0.0.1:5000/">
+            <img
+              class="image"
+              src="{{ url_for('static', filename='fyp_light logo.svg') }}"
+            />
+          </a>
+          <div id="modal" class="modal">
+            <div class="modal-content">
+              <span
+                class="close"
+                onclick="document.getElementById('modal').style.display = 'none'"
+                >&times;</span
+              >
+              <div id="modalContent"></div>
+              <img src="/static/magscale.jpg" />
+            </div>
+          </div>
+        </div>
+
+        <img
+          class="bg"
+          src="static\bgearth.PNG"
+          class="bg-image"
+          alt="Background Image"
+        />
+        <p class="text-wrapper-17">Magnitude After Solution Application</p>
+        <p class="intro-paragraph">
+          <strong>Water Injection or Human induced seismicity</strong
+          ><br /><br />
+          The interaction between water injection and earthquake magnitude has
+          garnered scientific interest. The Richter scale provides insight into
+          this relationship, indicating that while the impact of water injection
+          is negligible at higher magnitudes, subtle changes in pressure could
+          theoretically affect earthquakes in the 5.0 to 6.0 range.<br /><br />
+          Moreover, human activities altering underground water levels can
+          redistribute stress in the Earth's crust, potentially influencing the
+          buildup of strain along fault lines and altering seismic risk.
+          Understanding this interplay is vital for managing seismic hazards
+          effectively.<br /><br />Human activity can also be beneficial for us
+          as it generates smaller earthquakes of maximum 4 to 5 magnitudes,
+          which are not that much harmful for us but it prevents the higher
+          build-up of stress in the crust, preventing larger earthquakes causing
+          destruction to our environment.<br /><br />
+        </p>
+        <p class="magnitude">Enter Magnitude:</p>
+        <input
+          type="number"
+          id="magnitude"
+          name="magnitude"
+          step="0.1"
+          min="0"
+          max="9"
+          required
+          placeholder=" Magnitude"
+        />
+
+        <button onclick="viewReducedMagnitude()">View Reduced Magnitude</button>
+
+        <div class="intensity-scale"></div>
+      </div>
+    </div>
+    <script src="{{ url_for('static', filename='solutions.js') }}"></script>
+
+    <div class="footer">
+      <img
+        src="{{ url_for('static', filename='footer.png') }}"
+        alt="Footer Image"
+      />
+      <div class="overlay"></div>
+      <div class="footer-content">
+        <div class="text-wrapper-11">About Us</div>
+        <div class="text-wrapper-12">Predictor</div>
+        <div class="text-wrapper-13">Solutions</div>
+
+        <div class="text-wrapper-14">Insurance</div>
+
+        <div class="text-wrapper-15">Get In Touch</div>
+
+        <a href="http://127.0.0.1:5000/about" class="text-wrapper-16"
+          >About Quake Guardian</a
+        >
+        <a href="http://127.0.0.1:5000/predictor" class="text-wrapper-17"
+          >Earthquake Intensity Predictor</a
+        >
+        <a href="http://127.0.0.1:5000/solutions" class="how-we-do-it"
+          >Solutions</a
+        ><a href="http://127.0.0.1:5000/destruction" class="damagetext"
+          >Damage Predictor</a
+        >
+        <a href="http://127.0.0.1:5000/resources" class="resourcestext"
+          >Resources</a
+        >
+
+        <a href="http://127.0.0.1:5000/insurance" class="text-wrapper-18"
+          >Packages</a
+        >
+
+        <a href="http://127.0.0.1:5000/contact" class="contact-us-www"
+          >Contact Us<br />www.quakeguardian.com</a
+        >
+      </div>
+
+      <div class="grey-footer">
+        <div class="copyright">
+          &copy; 2024 Quake Guardian. All rights reserved.
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

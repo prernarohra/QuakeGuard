@@ -1,0 +1,747 @@
+body {
+  margin: 0%;
+  padding: 0%;
+}
+
+.cooperative .div {
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  background-color: #02111f;
+}
+
+.text-wrapper {
+  position: absolute;
+  width: 506px;
+  top: 100px;
+  left: 88px;
+  font-family: "Roboto-Bold", Helvetica;
+  font-weight: 700;
+  color: #12d3d3;
+  font-size: 34px;
+  letter-spacing: 0;
+  line-height: 60px;
+  margin: 0%;
+  padding: 0%;
+}
+
+.text-wrapper br {
+  display: none;
+}
+
+@media screen and (max-width: 600px) {
+  .text-wrapper br {
+    display: inline;
+  }
+}
+
+/*nav bar*/
+.navbar {
+  position: absolute;
+  width: 100%;
+  max-width: 1365px;
+  height: 95px;
+  top: -2px;
+  left: 0;
+  background-color: rgba(14, 10, 10, 0.5);
+  /* background-color: white; */
+  text-decoration: none;
+  z-index: 1000;
+  margin: 0%;
+  padding: 0%;
+}
+
+.Home,
+.About,
+.Predictor,
+.Solution,
+.Destruction,
+.Resources,
+.insurance,
+.contact {
+  font-family: "Roboto-Bold", Helvetica;
+  font-weight: 700;
+  color: #ffffff;
+  font-size: 16px;
+  letter-spacing: 0;
+  line-height: normal;
+  white-space: nowrap;
+  text-decoration: none;
+}
+
+.Home {
+  position: absolute;
+  top: 39px;
+  left: 237px;
+  color: #ffffff;
+}
+
+.About {
+  position: absolute;
+  top: 39px;
+  left: 317px;
+}
+
+.Predictor {
+  position: absolute;
+  top: 39px;
+  left: 417px;
+}
+
+.Solution {
+  position: absolute;
+  top: 39px;
+  left: 517px;
+}
+.Destruction {
+  position: absolute;
+  top: 39px;
+  left: 615px;
+}
+.Resources {
+  position: absolute;
+  top: 39px;
+  left: 707px;
+  color: white;
+}
+
+.insurance {
+  position: absolute;
+  top: 39px;
+  left: 817px;
+  color: #12d3d3;
+}
+
+.contact {
+  position: absolute;
+  top: 39px;
+  left: 917px;
+}
+
+.image {
+  position: absolute;
+
+  height: 49px;
+  top: 23px;
+  left: 82px;
+  object-fit: cover;
+}
+
+.signup {
+  position: absolute;
+  width: 102px;
+  height: 38px;
+  top: 29px;
+  left: calc(100% - 312px);
+  background-color: #088e8e;
+  border-radius: 15px;
+}
+
+.signup-wrapper,
+.login-wrapper {
+  font-family: "Roboto-Bold", Helvetica;
+  font-weight: 700;
+  color: #ffffff;
+  font-size: 15px;
+  letter-spacing: 0;
+  line-height: normal;
+  white-space: nowrap;
+}
+
+.login {
+  position: absolute;
+  width: 102px;
+  height: 38px;
+  top: 29px;
+  left: calc(100% - 185px);
+  background-color: #023535;
+  border-radius: 15px;
+}
+
+@media screen and (max-width: 768px) {
+  .navbar {
+    height: auto;
+    padding: 10px;
+  }
+
+  .Home,
+  .About,
+  .Predictor,
+  .Solution,
+  .Destruction,
+  .Resources,
+  .insurance,
+  .contact {
+    position: static;
+    display: block;
+    width: auto;
+    text-align: center;
+    margin-bottom: 10px;
+  }
+
+  .image {
+    position: relative;
+    display: block;
+    margin: 0 auto;
+  }
+
+  .signup,
+  .login {
+    position: relative;
+    display: block;
+    margin: 0 auto;
+    margin-top: 10px;
+    left: 0;
+  }
+}
+.signup,
+.login {
+  position: absolute;
+  width: 102px;
+  height: 38px;
+  top: 29px;
+  background-color: #088e8e;
+  border-radius: 15px;
+  text-align: center;
+  line-height: 38px;
+}
+.login {
+  background-color: #023535;
+}
+
+.signup-wrapper,
+.login-wrapper {
+  font-family: "Roboto-Bold", Helvetica;
+  font-weight: 700;
+  color: #ffffff;
+  font-size: 15px;
+  letter-spacing: 0;
+  white-space: nowrap;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+@media screen and (max-width: 768px) {
+  .image {
+    width: 60px;
+    height: 36px;
+    top: 20px;
+    left: 5%;
+  }
+}
+.user-initials-circle {
+  position: absolute;
+  top: 22px;
+  left: calc(100% - 152px);
+  display: inline-block;
+  width: 50px;
+  height: 46px;
+  border-radius: 50%;
+  background-color: #09b9b9;
+  text-align: center;
+  line-height: 36px;
+  margin-right: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.user-initials {
+  color: white;
+  font-size: 25px;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #069494;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  top: 68px;
+  left: calc(100% - 172px);
+  border-radius: 20px;
+}
+
+.dropdown-content a {
+  color: rgb(255, 255, 255);
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  font-size: large;
+}
+
+.dropdown-content a:hover {
+  background-color: #1ab4b4;
+  border-radius: 30px;
+}
+
+.user-initials-circle:hover .dropdown-content {
+  display: block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #069494;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  top: 68px;
+  left: calc(100% - 172px);
+  border-radius: 20px;
+}
+
+.user-initials-circle:hover .dropdown-content {
+  display: block;
+}
+
+@media screen and (max-width: 768px) {
+  .user-initials-circle {
+    top: 20px;
+    left: calc(100% - 62px);
+  }
+
+  .dropdown-content {
+    top: calc(100% + 10px);
+    left: calc(50% - 80px);
+  }
+}
+.banner {
+  position: relative;
+  padding: 50px;
+  background-color: #02111f;
+  color: #fff;
+  display: flex;
+  align-items: center;
+}
+
+.text-container {
+  flex: 1;
+  margin-right: 50px;
+  margin-top: 50px;
+}
+
+.banner h1 {
+  font-size: 34px;
+  font-weight: 700;
+  margin-bottom: 20px;
+  font-family: "Roboto-Bold", Helvetica;
+  color: #04d3c9;
+}
+
+.banner p {
+  font-size: 18px;
+  line-height: 2;
+  margin: 0;
+  font-family: "Roboto-Bold", Helvetica;
+  font-weight: 200;
+}
+
+.banner img {
+  max-width: 50%;
+  height: auto;
+  margin-top: 90px;
+}
+.view-button {
+  background-color: #009a92;
+  color: #fff;
+  border: none;
+  padding: 10px 70px;
+  font-size: 18px;
+  border-radius: 25px;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+.view-button:hover {
+  background-color: #007e77;
+}
+
+.additional-section {
+  margin-top: 0;
+  padding: 30px;
+  background-image: url(/static/insurancebg.PNG);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  color: #ffffff;
+  font-family: "Roboto", Helvetica, sans-serif;
+}
+
+.additional-section h2 {
+  font-size: 34px;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+.scroll-container {
+  overflow-x: auto;
+  white-space: nowrap;
+  scrollbar-width: thin;
+  background: rgba(0, 0, 0, 0);
+}
+
+.insurance-type {
+  display: inline-block;
+  width: 250px;
+  height: 150px;
+  padding: 20px;
+  margin-right: 20px;
+  background-color: #009a92;
+  color: #ffffff;
+  border-radius: 20px;
+  cursor: pointer;
+  text-align: center;
+  line-height: 110px;
+  font-size: 29px;
+  background-color: rgba(11, 203, 209, 0.897);
+  font-weight: bold;
+}
+
+.insurance-type:hover {
+  background-color: #007e77;
+}
+.insurance-section-container {
+  padding-top: 40px;
+  background-color: #02111f;
+}
+.insurance-section {
+  background-color: rgb(3, 32, 59);
+  padding-left: 30px;
+  padding-bottom: 10px;
+
+  background-color: #02111f;
+}
+
+.insurance-section h2 {
+  font-size: 24px;
+  color: #05dfd4;
+  font-family: "Roboto-Bold", Helvetica;
+  font-weight: 700;
+  font-size: 35px;
+  margin-top: 0;
+}
+
+.company-list {
+  margin-top: 20px;
+}
+
+.company {
+  margin-bottom: 15px;
+}
+
+.company-name {
+  font-weight: bold;
+  margin-top: 20px;
+  color: white;
+  color: rgb(0, 255, 221);
+  font-size: 22px;
+}
+
+.company-description {
+  color: #ffffffda;
+  font-size: 20px;
+  margin-top: 10px;
+  margin-bottom: 100px;
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+a {
+  color: rgb(0, 255, 221);
+  text-decoration: none;
+}
+/* Modal Content */
+.modal-content {
+  background-color: #032c33d2;
+  margin: 15% auto;
+  padding: 20px;
+
+  width: 100%;
+  max-width: 800px;
+  border-radius: 2%;
+  max-height: 900px;
+  color: rgb(255, 255, 255);
+  line-height: 30px;
+  font-size: 20px;
+}
+
+/* Close Button */
+.close {
+  color: #ffffff;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  top: 0%;
+}
+
+.close:hover,
+.close:focus {
+  color: rgb(255, 255, 255);
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/*footer*/
+.footer {
+  position: relative;
+  height: 480px;
+  bottom: 0;
+  left: 0;
+  z-index: 0;
+
+  margin-top: auto;
+}
+
+.footer img {
+  width: 100%;
+  height: 120%;
+  object-fit: cover;
+  display: block;
+  position: relative;
+  z-index: 1;
+  top: 0;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 120%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1;
+}
+
+.footer-content {
+  position: absolute;
+  top: 0%;
+  transform: translate(-50%, -50%);
+  z-index: 3;
+  text-align: center;
+  color: white;
+}
+
+.contact-us-www {
+  position: absolute;
+  width: 192px;
+  top: 226px;
+  left: 925px;
+  font-family: "Roboto-Bold", Helvetica;
+  font-weight: 700;
+  color: #ffffff;
+  font-size: 16px;
+  letter-spacing: 0;
+  line-height: 25px;
+}
+
+.text-wrapper-11 {
+  position: absolute;
+  width: 117px;
+  top: 176px;
+  left: 166px;
+  font-family: "Roboto-Bold", Helvetica;
+  font-weight: 700;
+  color: #ffffff;
+  font-size: 24px;
+  letter-spacing: 0;
+  line-height: normal;
+  white-space: nowrap;
+}
+
+.text-wrapper-12 {
+  position: absolute;
+  width: 118px;
+  top: 176px;
+  left: 378px;
+  font-family: "Roboto-Bold", Helvetica;
+  font-weight: 700;
+  color: #ffffff;
+  font-size: 24px;
+  letter-spacing: 0;
+  line-height: normal;
+}
+
+.text-wrapper-13 {
+  position: absolute;
+  width: 109px;
+  top: 176px;
+  left: 569px;
+  font-family: "Roboto-Bold", Helvetica;
+  font-weight: 700;
+  color: #ffffff;
+  font-size: 24px;
+  letter-spacing: 0;
+  line-height: normal;
+}
+
+.text-wrapper-14 {
+  position: absolute;
+  width: auto;
+  top: 176px;
+  left: 735px;
+  font-family: "Roboto-Bold", Helvetica;
+  font-weight: 700;
+  color: #ffffff;
+  font-size: 24px;
+  letter-spacing: 0;
+  line-height: normal;
+}
+
+.text-wrapper-15 {
+  position: absolute;
+  width: 158px;
+  top: 176px;
+  left: 932px;
+  font-family: "Roboto-Bold", Helvetica;
+  font-weight: 700;
+  color: #ffffff;
+  font-size: 24px;
+  letter-spacing: 0;
+  line-height: normal;
+}
+
+.text-wrapper-16 {
+  position: absolute;
+  width: 164px;
+  top: 221px;
+  left: 138px;
+  font-family: "Roboto-SemiBold", Helvetica;
+  font-weight: 600;
+  color: #ffffff;
+  font-size: 16px;
+  letter-spacing: 0;
+  line-height: 25px;
+}
+
+.text-wrapper-17 {
+  position: absolute;
+  width: 149px;
+  top: 223px;
+  left: 368px;
+  font-family: "Roboto-SemiBold", Helvetica;
+  font-weight: 600;
+  color: #ffffff;
+  font-size: 16px;
+  letter-spacing: 0;
+  line-height: 25px;
+}
+
+.how-we-do-it {
+  position: absolute;
+  width: 102px;
+  top: 223px;
+  left: 570px;
+  font-family: "Roboto-SemiBold", Helvetica;
+  font-weight: 600;
+  color: #ffffff;
+  font-size: 16px;
+  letter-spacing: 0;
+  line-height: 25px;
+}
+.text-wrapper-18 {
+  position: absolute;
+  width: 102px;
+  top: 224px;
+  left: 735px;
+  font-family: "Roboto-SemiBold", Helvetica;
+  font-weight: 600;
+  color: #ffffff;
+  font-size: 16px;
+  letter-spacing: 0;
+  line-height: 25px;
+}
+.grey-footer {
+  background-color: #1a02028c;
+  padding: 20px;
+}
+
+.copyright {
+  text-align: center;
+  font-size: 14px;
+  color: #ffffff;
+}
+.additional-section {
+  position: relative;
+}
+
+.scroll-wrapper {
+  position: relative;
+  overflow: hidden;
+}
+
+.scroll-container {
+  overflow-x: auto;
+  white-space: nowrap;
+  background: rgba(0, 0, 0, 0);
+}
+
+.left-arrow,
+.right-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  color: #ffffff;
+  font-size: 45px;
+  z-index: 1000;
+}
+
+.left-arrow {
+  left: 0;
+}
+
+.right-arrow {
+  right: 0;
+}
+/* Hide the scrollbar for WebKit browsers */
+.scroll-container::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide the scrollbar for other browsers */
+.scroll-container {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  overflow: -moz-scrollbars-none;
+}
+
+.damagetext {
+  position: absolute;
+  width: 149px;
+  top: 285px;
+  left: 368px;
+  font-family: "Roboto-SemiBold", Helvetica;
+  font-weight: 600;
+  color: #ffffff;
+  font-size: 16px;
+  letter-spacing: 0;
+  line-height: 25px;
+  text-decoration: none;
+}
+.resourcestext {
+  position: absolute;
+  width: 102px;
+  top: 255px;
+  left: 570px;
+  font-family: "Roboto-SemiBold", Helvetica;
+  font-weight: 600;
+  color: #ffffff;
+  font-size: 16px;
+  letter-spacing: 0;
+  line-height: 25px;
+  text-decoration: none;
+}

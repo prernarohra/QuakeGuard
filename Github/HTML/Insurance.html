@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Insurance Page</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='insurance.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <script src="{{ url_for('static', filename='insurance.js') }}"></script>
+    <script>
+        // Function to toggle dropdown
+        function toggleDropdown() {
+            var dropdown = document.getElementById("dropdownContent");
+            dropdown.style.display = dropdown.style.display === "block" ? "none" : "block";
+        }
+
+        function scrollToAdditionalSection() {
+            var earthquakeSection = document.getElementById("earthquakeSection");
+            earthquakeSection.scrollIntoView({ behavior: "smooth" });
+        }
+
+        function scrollToInsurance(type) {
+            var sectionId = type + "Section";
+            var section = document.getElementById(sectionId);
+            section.scrollIntoView({ behavior: "smooth" });
+        }
+    </script>
+</head>
+<body>
+<div class="navbar">
+    <a href="http://127.0.0.1:5000/" class="Home">Home</a>
+    <a href="http://127.0.0.1:5000/about" class="About">About Us</a>
+    <a href="http://127.0.0.1:5000/predictor" class="Predictor">Predictor</a>
+    <a href="http://127.0.0.1:5000/solutions" class="Solution">Solution</a><a href="http://127.0.0.1:5000/destruction" class="Destruction"
+    >Damage</a
+  >
+    <a href="http://127.0.0.1:5000/resources" class="Resources">Resources</a>
+    <a href="http://127.0.0.1:5000/insurance" class="insurance">Insurance</a>
+    <a href="http://127.0.0.1:5000/contact" class="contact">Contact Us</a>
+
+
+    <div class="user-info">
+        {% if 'email' in session %}
+        <div class="user-initials-circle" onclick="toggleDropdown()">
+            <div class="user-initials">{{ session['email'][0] | upper}}</div>
+        </div>
+        <div class="dropdown-content" id="dropdownContent">
+            <a href="{{ url_for('logout') }}"><i class="fas fa-sign-out-alt"></i> Sign Out</a>
+        </div>
+        {% else %}
+        <a href="{{ url_for('sign_up') }}" id="signupBtn" class="signup">
+            <div class="signup-wrapper">Sign up</div>
+        </a>
+        <a href="{{ url_for('login') }}" id="loginBtn" class="login">
+            <div class="login-wrapper">Login</div>
+        </a>
+        {% endif %}
+    </div>
+
+    <a href="http://127.0.0.1:5000/">
+        <img class="image" src="{{ url_for('static', filename='fyp_light logo.svg') }}" />
+    </a>
+</div>
+
+<!-- Content section -->
+<section class="content">
+    <div class="banner">
+        <div class="text-container">
+            <h1>Earthquake Insurance in Pakistan</h1>
+            <h2>
+                <p>
+                    Insurance companies offer a variety of insurance policies that cover
+                    earthquake damage. These policies are designed to provide financial
+                    protection to members across the world related to any earthquake
+                    damage. Insurance companies assess the seismic risk of an area and tailor their policies accordingly. <br>
+                    1. Tailored Coverage <br>
+
+2. Financial Support <br>
+
+3. Global Coverage
+                </p>
+                <button class="view-button" onclick="scrollToAdditionalSection()">View</button>
+        </div>
+        <img src="/static/insurance.png" alt="Insurance Image" />
+    </div>
+
+    <div class="additional-section" id="earthquakeSection">
+        <h2>Insurance Types</h2>
+        <div class="scroll-wrapper">
+            <div class="scroll-container">
+                <div class="insurance-type" onclick="scrollToInsurance('earthquake')">Earthquake</div>
+                <div class="insurance-type" onclick="scrollToInsurance('property')">Property</div>
+                <div class="insurance-type" onclick="scrollToInsurance('life')">Life</div>
+                <div class="insurance-type" onclick="scrollToInsurance('shop')">Shop</div>
+                <div class="insurance-type" onclick="scrollToInsurance('home')">Home</div>
+              
+            </div>
+            <div class="left-arrow">&#10094;</div>
+            <div class="right-arrow">&#10095;</div>
+        </div>
+    </div>
+    
+    
+
+   <div class="insurance-section-container">
+    <div class="insurance-section" id="earthquakeSection">
+        <h2>Earthquake Insurance Companies</h2>
+        <div class="company-list">
+         
+            <div class="company">
+                <a href="#" class="company-link"> 
+                    <img src="/static/askariinsurancelogo.png" alt="Company Logo">
+                    <div class="company-name">Askari Fire Insurance</div>
+                </a>
+                <div class="company-description">by Askari Insurance Company</div>
+            </div>
+            
+            <div class="company">
+                <a href="#" class="company-link">
+                    <img src="/static/pakqatart.png" alt="Company Logo">
+                    <div class="company-name">Fire & Property Takaful Insurance</div>
+                </a>
+                <div class="company-description">by Pak Qatar General Takaful Limited</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Property insurance companies section -->
+    <div class="insurance-section-container">
+    <div class="insurance-section" id="propertySection">
+        <h2>Property Insurance Companies</h2>
+        <div class="company-list">
+            <a href="#" class="company-link"> 
+                <img src="/static/tplinsurancelogo.PNG" alt="Company Logo">
+                <div class="company-name">TPL Property Insurance</div>
+            </a>
+            <div class="company-description">by TPL Insurance Company</div>
+            <a href="#" class="company-link"> 
+                <img src="/static/alfalah.PNG" alt="Company Logo">
+                <div class="company-name">Alfalah Property Insurance</div>
+            </a>
+            <div class="company-description">by Alfalah Insurance company</div>
+        </div>
+    </div>
+
+    <!-- Life insurance companies section -->
+    <div class="insurance-section" id="lifeSection">
+        <h2>Life Insurance Companies</h2>
+        <div class="company-list">
+            <a href="#" class="company-link"> 
+                <img src="/static/state_lifelogo.PNG" alt="Company Logo">
+                <div class="company-name">State Life Insurance plan</div>
+            </a>
+            <div class="company-description">by State life Insurance company</div>
+            <a href="#" class="company-link"> 
+                <img src="/static/pakqatart.png" alt="Company Logo">
+                <div class="company-name">Personal Accident Takaful</div>
+            </a>
+            <div class="company-description">by pak qatar general takaful limited</div>
+            <a href="#" class="company-link"> 
+                <img src="/static/metlifelogo.PNG" alt="Company Logo">
+                <div class="company-name">Life Insurance plan</div>
+            </a>
+            <div class="company-description">by METlife Insurance company</div>
+        </div>
+    </div>
+
+    <!-- Shop insurance companies section -->
+    <div class="insurance-section" id="shopSection">
+        <h2>Shop Insurance Companies</h2>
+        <div class="company-list">
+            <a href="#" class="company-link"> 
+                <img src="/static/uic2.PNG" alt="Company Logo">
+                
+                <div class="company-name">Shop Owner Comprehensive Takaful</div>
+            </a>
+            <div class="company-description">by United Insurance Company</div>
+            <a href="#" class="company-link"> 
+               
+                <div class="company-name">Shop Secure Plan Plus</div>
+            </a>
+            <div class="company-description">by United Insurance Company</div>
+        </div>
+    </div>
+
+    <!-- Home insurance companies section -->
+    <div class="insurance-section" id="homeSection">
+        <h2>Home Insurance Companies</h2>
+        <div class="company-list">
+            <a href="#" class="company-link"> 
+                <img src="/static/pakqatart.png" alt="Company Logo">
+                <div class="company-name">Home Takaful</div>
+            </a>
+            <div class="company-description">by pak qatar general takaful limited</div>
+            <a href="#" class="company-link">
+                <img src="/static/adamjee_insurance.jpg" alt="Company Logo">
+                <div class="company-name">Home Insurance</div>
+            </a>
+            <div class="company-description">by Adamjee Insurance company</div>
+        </div>
+    </div><div id="myModal" class="modal">
+      <div class="modal-content">
+          <span class="close">&times;</span>
+          <h2 id="modal-title"></h2>
+          <p id="modal-description"></p>
+          <div id="modal-content"></div>
+      </div>
+  </div>
+</section><script>
+  
+  var companyLinks = document.querySelectorAll('.company-link');
+
+
+var modal = document.getElementById("myModal");
+var closeButton = modal.querySelector(".close"); 
+function openModal(name, description, content) { // Added content parameter
+    document.getElementById("modal-title").innerHTML = name;
+    document.getElementById("modal-description").innerHTML = description;
+    document.getElementById("modal-content").innerHTML = content; // Added content to modal
+    modal.style.display = "block";
+}
+
+// Function to close the modal
+closeButton.onclick = function() {
+    modal.style.display = "none";
+}
+
+// Close the modal when clicked outside of it
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
+
+
+companyLinks.forEach(function(link, index) { // Added index parameter
+    link.addEventListener('click', function(event) {
+        event.preventDefault(); // Prevent default link behavior
+        var name = this.querySelector('.company-name').innerText;
+        var description = this.nextElementSibling.innerText;
+        var content = "";
+
+       
+        if (index === 0) {
+            content = "Askari Fire Insurance assist organizations in controlling their exposures to accidental fire losses by offering to pay for the losses that cannot be avoided prevented or limited. Owing to the high probability of organizational exposure to the possibility of fire losses Askari Fire Insurance covers the damage to the property caused by fire, Earthquake (Fire and Shock), Explosion, Aircraft Damage, Impact Damage, Atmospheric Disturbance, Riot and Strike Damage, Malicious Damage, Burglary and a range of perils. Cost of replacement, reconstruction or repairs are covered.<br>Want to know more about it? click here: <a href='https://www.agico.com.pk/fire.php'>https://www.agico.com.pk/fire.php</a>";
+
+        } else if (index === 1) {
+            content = "Business places, homes and wealth require security from seen and unforeseen losses. These might arise from fires, burglaries, natural calamities  and other hazards which are an unavoidable part of everyday life. In this regards, Fire and Allied Perils Takaful provides comprehensive coverage against all risks to make lives and businesses  secure.Fire Takaful provides compensation to the covered person or firm in the event of damage to property (i.e. buildings, stock, machinery and other contents). This policy extends customized coverage for diverse industrial sector companies according to their needs. This Takaful policy covers Fire losses due to the following:Lightening; Riot and Strike;Malicious damage;Explosion;Atmospheric disturbance (flood, inundation etc.);Earthquake; Shock damage;Aircraft & Impact damage;Burglary and Housebreaking; andCauses detailed under Electrical Clause “B”. <br> Want to know more about it? click here: <a href= 'https://pqgtl.com.pk/corporate-takaful/fire-property-takaful/'>https://pqgtl.com.pk/corporate-takaful/fire-property-takaful/</a>";
+        }else if (index === 2) {
+            content = "Whether you own a home, business property or rental units, property insurance offers a safety net against unexpected events. <br> Want to know more about it? click here <a href='https://tplinsurance.com/products/property-insurance'>https://tplinsurance.com/products/property-insurance</a>";
+        }else if (index === 3) {
+            content = "We are fully aware that our clients wish to secure their assets against fortuitous losses. We offer various formsof property insurance providing comprehensive covers to safeguard the insured assets against the widest possible forms of risks. <br> Want to know more about it? click here: <a href=' https://alfalahinsurance.com/Alfalah-property-insurance.html'>https://alfalahinsurance.com/Alfalah-property-insurance.html</a>";
+        }else if (index === 4) {
+            content = "It is a unique combination of protection and savings at a very economical premium. Death at any time before age 85 years terminates payment of premiums and the sum insured and attached bonuses become payable. In the event the insuredsurvives to the policy anniversary at age 85 years, the policy matures and the sum insured plus bonuses become payable.Under this plan the rates of bonuses are usually much higher than the other plans and they help in increasing not onlyprotection but also the investment element of the policy substantially. <br> Want to know more about it? click here: <a href= ' https://www.statelife.com.pk/index.php/whole-life-assurance-3'>https://www.statelife.com.pk/index.php/whole-life-assurance-3</a>";
+        }else if (index === 5) {
+            content = "Personal Accident Takaful has been tailored to offer you round the clock cover that fits your needs by providing you and/or your family comprehensive coverage for:Accidental death. Accidental total disablement. With a very nominal contribution in order to make your journey, stress-free.Notes;The coverage under this policy shall be granted to persons aged between 18 and 60 yearsThe risk of terrorism and sabotage is excluded. <br> Want to know more about it? click here: <a href=' https://pqgtl.com.pk/individual-takaful/personal-accident/'>https://pqgtl.com.pk/individual-takaful/personal-accident/</a>";
+        }else if (index === 6) {
+            content = "When you buy life insurance, you enter a contract with an insurance company that promises to provide your beneficiaries with a certain amount of money upon your death. In return, you make periodic payments, called premiums. The premium amount is based on factors such as your age, gender, medical history, and the dollar amount of life insurance you purchase.In the event of your passing, life insurance provides money directly to your beneficiaries. They can use the money for:Making up for your lost incomeFunding a child’s education. Paying off household debtPaying for your funeral and other related expensesCertain types of life insurance may provide benefits for you and your family while you’re still living. For example, permanent life insurance offers a cash value component, which can be used during your lifetime. <br> Want to know more about it? click here: <a href=' https://www.metlife.com/stories/life-insurance/what-is-life-insurance-an-introduction/'>https://www.metlife.com/stories/life-insurance/what-is-life-insurance-an-introduction/</a>";
+        }else if (index === 7) {
+            content = "You are the breadwinner for your family. But your shop is the breadwinner for you! It offers you the opportunity to earn on your own terms, to be your own boss. The rising trend in consumer expenditure promises handsome returns on your investment. However these are also anxious times with uncertain law and order and ever increasing natural calamities.Regardless of all the precautions you may take, your shop still remain vulnerable to armed robbery, riots, strikes, fire, natural disasters and freak weather conditions among other risks. Loss of income coupled with high costs of construction renders in next to impossible to repair, restore or replace your commercial property.UIC endeavors to cushion the financial impact of loss related to your shop and stock by offering a customized insurance program for your “bread and butter” assets. <br> Want to know more about it? click here: <a href=' https://www.theunitedinsurance.com/commercial-business-insurance//'>https://www.theunitedinsurance.com/commercial-business-insurance//</a>";
+        }else if (index === 8) {
+            content = "You are the breadwinner for your family. But your shop is the breadwinner for you! It offers you the opportunity to earn on your own terms, to be your own boss. The rising trend in consumer expenditure promises handsome returns on your investment. However these are also anxious times with uncertain law and order and ever increasing natural calamities. Regardless of all the precautions you may take, your shop still remain vulnerable to armed robbery, riots, strikes, fire, natural disasters and freak weather conditions among other risks. Loss of income coupled with high costs of construction renders in next to impossible to repair, restore or replace your commercial property.Coverage(s);Armed robbery, burglaryRiot & Strike damageEarthquakeRain, Flood, Cyclone & Severe StormsActs of Malicious PersonsFire and LightningExplosionFalling Aircraft and other Aerial DevicesImpact of Motor Vehicle. <br> Want to know more about it? click here: <a href=' https://pqgtl.com.pk/wp-content/uploads/2023/10/Shop-Owner-Comprehensive-Takaful-1.pdf'>https://pqgtl.com.pk/wp-content/uploads/2023/10/Shop-Owner-Comprehensive-Takaful-1.pdf</a>";
+        }else if (index === 9) {
+            content = "Home Takaful is another highly rated product of Pak-Qatar General Takaful Limited. Home Takaful protects and alleviates you from financial loss arising from mishaps that are generally “sudden and accidental” and, therefore, hard to predict and prevent.Basic Coverage: Home Takaful covers loss or damage to Residential building and Contents due to certain perils and accident listed below.Fire and Lighting, Rain, Flood, Cyclone and severe storm Earthquake Burglary, armed robbery and housebreaking Riots and Strike Damage Malicious Act Explosion Falling Aircraft and other Aerial Devices Impact of Falling Trees Water Damage due to burst pipes Accidental Glass Breakage (Glazing) Accidental Damage to Underground Tanks Loss of Rent. <br> Want to know more about it? click here: <a href= ' https://pqgtl.com.pk/individual-takaful/home-takaful/'>https://pqgtl.com.pk/individual-takaful/home-takaful/</a>";
+        }
+        else if (index === 10) {
+            content = "Home Insurance by Adamjee Insurance companyHome insurance, also referred to as homeowner's insurance or property insurance, is a category of insurance that provides financial security for your house and its belongings. It is meant to aid in your recovery from unexpected events or possible property damage.<br> Want to know more about it? click here: <a href=' https://www.adamjeeinsurance.com/home-insurance'>https://www.adamjeeinsurance.com/home-insurance</a>";
+        }
+
+        openModal(name, description, content);
+    });
+});
+</script>
+<section class="footer">
+  <img
+    src="{{ url_for('static', filename='footer.png') }}"
+    alt="Footer Image"
+  />
+  <div class="overlay"></div>
+  <div class="footer-content">
+    <div class="text-wrapper-11">About Us</div>
+    <div class="text-wrapper-12">Predictor</div>
+    <div class="text-wrapper-13">Solutions</div>
+
+    <div class="text-wrapper-14">Insurance</div>
+
+    <div class="text-wrapper-15">Get In Touch</div>
+
+    <a href="http://127.0.0.1:5000/about" class="text-wrapper-16"
+      >About Quake Guardian</a
+    >
+    <a href="http://127.0.0.1:5000/predictor" class="text-wrapper-17"
+      >Earthquake Intensity Predictor</a
+    >
+    <a href="http://127.0.0.1:5000/solutions" class="how-we-do-it"
+      >Solutions</a
+    >
+
+    <a href="http://127.0.0.1:5000/destruction" class="damagetext"
+              >Damage Predictor</a
+            >
+            <a href="http://127.0.0.1:5000/resources" class="resourcestext"
+              >Resources</a
+            >
+
+    <a href="http://127.0.0.1:5000/insurance" class="text-wrapper-18"
+      >Packages</a
+    >
+
+    <a href="http://127.0.0.1:5000/contact" class="contact-us-www"
+      >Contact Us<br />www.quakeguardian.com</a
+    >
+  </div>
+
+  <div class="grey-footer">
+    <div class="copyright">
+      &copy; 2024 Quake Guardian. All rights reserved.
+    </div>
+  </div>
+</div>
+        </section>
+
+</body>
+</html>

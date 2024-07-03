@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='newhome.css') }}"
+    />
+
+    <script>
+      // Function to toggle dropdown
+      function toggleDropdown() {
+        var dropdown = document.getElementById("dropdownContent");
+        dropdown.style.display =
+          dropdown.style.display === "block" ? "none" : "block";
+      }
+    </script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    />
+
+    <title>home</title>
+  </head>
+  <body>
+    <div class="navbar">
+      <a href="http://127.0.0.1:5000/" class="Home">Home</a>
+      <a href="http://127.0.0.1:5000/about" class="About">About Us</a>
+      <a href="http://127.0.0.1:5000/predictor" class="Predictor">Predictor</a>
+      <a href="http://127.0.0.1:5000/solutions" class="Solution">Solution</a>
+      <a href="http://127.0.0.1:5000/destruction" class="Destruction">Damage</a>
+      <a href="http://127.0.0.1:5000/resources" class="Resources">Resources</a>
+      <a href="http://127.0.0.1:5000/insurance" class="insurance">Insurance</a>
+      <a href="http://127.0.0.1:5000/contact" class="contact">Contact Us</a>
+
+      {% if 'email' in session %}
+      <div class="user-initials-circle" onclick="toggleDropdown()">
+        <div class="user-initials">{{ session['email'][0] | upper}}</div>
+      </div>
+      <div class="dropdown-content" id="dropdownContent">
+        <a href="{{ url_for('logout') }}"
+          ><i class="fas fa-sign-out-alt"></i> Sign Out</a
+        >
+      </div>
+
+      {% else %}
+      <a href="{{ url_for('sign_up') }}" id="signupBtn" class="signup"
+        ><div class="signup-wrapper">Sign up</div></a
+      >
+      <a href="{{ url_for('login') }}" id="loginBtn" class="login"
+        ><div class="login-wrapper">Login</div></a
+      >
+
+      {% endif %}
+
+      <a href="http://127.0.0.1:5000/">
+        <img
+          class="image"
+          src="{{ url_for('static', filename='fyp_light logo.svg') }}"
+        />
+      </a>
+    </div>
+
+    <div class="video-container">
+      <video autoplay muted loop id="video-banner">
+        <source src="static\video earth.mp4" />
+        Your browser does not support the video tag.
+      </video>
+
+      <div class="overlay"></div>
+    </div>
+
+    <div class="section--1">
+      <div class="Main-heading">
+        Earthquake Intensity Minimizer
+
+        <p class="subheading">Minimize The Shake, Maximize The Safety</p>
+
+        <a href="http://127.0.0.1:5000/login" class="getstarted-button">
+          <div class="button-body">
+            <div class="button-wrapper">Get Started</div>
+          </div>
+        </a>
+      </div>
+    </div>
+    <div class="what_we_do_section">
+      <!-- Text for section2 -->
+      <div class="text">
+        <span class="Section_heading">What We Do?<br /></span>
+        <span class="text_section">
+          At Quake Guardian, we're on a mission to enhance earthquake
+          preparedness and safety. We achieve this through innovative
+          technologies and services:<br />
+          1. Earthquake Intensity Prediction<br />
+          2. Minimizing Impact<br />
+          3. Destruction Estimation<br />
+          4. Cooperative Insurance
+        </span>
+      </div>
+      <img
+        class="vector_graphics"
+        src="{{ url_for('static', filename='vector.png') }}"
+      />
+      <a href="http://127.0.0.1:5000/about" class="Learn_more_button">
+        <div class="button">
+          <div class="text_learnmore">Learn More</div>
+        </div>
+      </a>
+    </div>
+
+    <!--contact section-->
+    <div class="Contact_Section">
+      <div class="subtext">We are available 24/7</div>
+      <div class="Main_heading">Contact Us</div>
+      <form
+        action="https://api.web3forms.com/submit"
+        method="POST"
+        onsubmit="return validateForm()"
+      >
+        <input
+          type="hidden"
+          name="access_key"
+          value="4c528252-a70c-42ae-b432-449ea2ac354e"
+        />
+        <div class="Text-field1">
+          <label for="firstName" class="text-wrapper-firstname"
+            >First Name</label
+          >
+          <input
+            type="text"
+            id="firstName"
+            name="firstName"
+            class="text-wrapper-firstname"
+            placeholder="First Name"
+            required
+          />
+        </div>
+        <div class="headingfname">First Name *</div>
+
+        <div class="Text-field2">
+          <label for="lastName" class="text-wrapper-lastname">Last Name</label>
+          <input
+            type="text"
+            id="lastName"
+            name="lastName"
+            class="text-wrapper-lastname"
+            placeholder="Last Name"
+            required
+          />
+        </div>
+        <div class="headinglname">Last Name *</div>
+
+        <div class="Text-field3">
+          <label for="email" class="text-wrapper-email">Email</label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            class="text-wrapper-email"
+            placeholder="Email"
+            required
+          />
+        </div>
+        <div class="headingemail">Email *</div>
+
+        <div class="Text-field4">
+          <label for="message" class="text-wrapper-message">Message</label>
+          <textarea
+            id="message"
+            name="message"
+            class="text-wrapper-message"
+            placeholder="Your Message"
+            rows="6"
+            required
+          ></textarea>
+        </div>
+        <div class="headingmessage">Message*</div>
+
+        <button type="submit" class="submit-button">Submit</button>
+      </form>
+      <p class="we-re-here-to-assist">
+        We're here to assist you. Feel free to reach out with any questions,
+        concerns, or feedback. Your message matters to us, and we'll get back to
+        you promptly.
+      </p>
+      <div class="links">
+        <div class="quakeguardian-com-pk">
+          <a href="http://127.0.0.1:5000/" class="link">
+            <i class="icon-web"></i>quakeguardian.com.pk
+          </a>
+          <a href="mailto:quakeguardian13@gmail.com" class="link">
+            <i class="icon-email"></i>quakeguardian13@gmail.com
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="footer">
+      <img
+        src="{{ url_for('static', filename='footer.png') }}"
+        alt="Footer Image"
+      />
+      <div class="footer-content">
+        <div class="text-wrapper-11">About Us</div>
+        <div class="text-wrapper-12">Predictor</div>
+        <div class="text-wrapper-13">Solutions</div>
+
+        <div class="text-wrapper-14">Insurance</div>
+
+        <div class="text-wrapper-15">Get In Touch</div>
+
+        <a href="http://127.0.0.1:5000/about" class="text-wrapper-16"
+          >About Quake Guardian</a
+        >
+        <a href="http://127.0.0.1:5000/predictor" class="text-wrapper-17"
+          >Earthquake Intensity Predictor</a
+        >
+        <a href="http://127.0.0.1:5000/destruction" class="damagetext"
+          >Damage Predictor</a
+        >
+
+        <a href="http://127.0.0.1:5000/insurance" class="text-wrapper-18"
+          >Packages</a
+        >
+        <a href="http://127.0.0.1:5000/solutions" class="how-we-do-it"
+          >Solutions</a
+        >
+        <a href="http://127.0.0.1:5000/resources" class="resourcestext"
+          >Resources</a
+        >
+
+        <a href="http://127.0.0.1:5000/contact" class="contact-us-www"
+          >Contact Us<br />www.quakeguardian.com</a
+        >
+      </div>
+
+      <div class="grey-footer">
+        <div class="copyright">
+          &copy; 2024 Quake Guardian. All rights reserved.
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

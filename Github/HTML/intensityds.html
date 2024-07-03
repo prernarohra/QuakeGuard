@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Intensity Dataset</title>
+    <!-- Include DataTables CSS -->
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.css"
+    />
+    <!-- Include jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <!-- Include DataTables JS -->
+    <script
+      type="text/javascript"
+      charset="utf8"
+      src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.js"
+    ></script>
+    <style>
+      .content-wrapper {
+        max-width: 1200px;
+        margin: auto;
+        padding: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <section class="dataset-viewing">
+      <div class="content-wrapper">
+        <h2>Earthquake Intensity Dataset</h2>
+        <p>Click below to download the dataset:</p>
+        <a href="/static/intensity.csv" download="intensity.csv"
+          >Download intensity.csv</a
+        >
+
+        <br /><br />
+        <table id="datasetTable" class="display">
+          <thead>
+            <tr id="tableHeader">
+              <!-- Table headers will be appended here -->
+            </tr>
+          </thead>
+          <tbody id="tableBody">
+            <!-- Table data will be appended here -->
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <script>
+      // Function to fetch and display the CSV data
+      $(document).ready(function () {
+        $.ajax({
+          url: "/static/intensity.csv", // Updated URL
+          dataType: "text",
+        })
+          .done(function (data) {
+            const allRows = data.split(/\r?\n|\r/);
+            let tableHeaders = allRows[0].split(",");
+            let headerHtml = "";
+            tableHeaders.forEach((header) => {
+              headerHtml += "<th>" + header + "</th>";
+            });
+            $("#tableHeader").html(headerHtml);
+
+            let bodyHtml = "";
+            for (let i = 1; i < allRows.length; i++) {
+              if (allRows[i]) {
+                const rowCells = allRows[i].split(",");
+                bodyHtml += "<tr>";
+                rowCells.forEach((cell) => {
+                  bodyHtml += "<td>" + cell + "</td>";
+                });
+                bodyHtml += "</tr>";
+              }
+            }
+            $("#tableBody").html(bodyHtml);
+
+            // Initialize DataTable
+            $("#datasetTable").DataTable();
+          })
+          .fail(function () {
+            alert("Error: CSV file not found.");
+          });
+      });
+    </script>
+  </body>
+</html>

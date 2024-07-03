@@ -1,0 +1,118 @@
+body {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #e7f0ee;
+}
+
+.container {
+  width: 100%;
+  max-width: 540px;
+  height: 390px;
+  border-radius: 30px;
+  background: rgba(8, 142, 142, 0.7);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 15px 20px;
+}
+
+h1 {
+  text-align: center;
+  color: #fff;
+  font-family: Roboto;
+  font-size: 40px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 20px;
+}
+
+form {
+  margin-top: 20px;
+}
+
+label[for="email"],
+label[for="password"] {
+  display: block;
+  margin-bottom: 10px;
+  color: white;
+}
+
+label[for="email"]:after,
+label[for="password"]:after {
+  content: "*";
+  color: white;
+  font-size: 12px;
+}
+
+input[type="email"],
+input[type="password"],
+input[type="checkbox"] {
+  width: 100%;
+  max-width: 450px; /* Adjusted width */
+  height: 30px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  padding: 10px 15px;
+  box-sizing: border-box;
+}
+
+.remember-me {
+  display: block;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  color: white;
+}
+
+.remember-me input[type="checkbox"] {
+  width: 15px;
+  height: 15px;
+}
+
+button[type="submit"] {
+  width: 100%;
+  max-width: 450px; /* Adjusted width */
+  height: 40px;
+  border-radius: 30px;
+  background: #fff;
+  background-blend-mode: difference;
+  outline: none;
+  border: none;
+  color: #023535;
+  font-family: Roboto;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  text-align: center;
+  cursor: pointer;
+}
+
+a {
+  color: #56025e;
+  display: block;
+  text-align: center;
+  margin-top: 10px;
+}
+
+.error {
+  color: rgb(209, 10, 10);
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+p {
+  color: white;
+  text-align: center;
+  margin-top: 10px;
+}
+
+p a {
+  color: #56025e;
+  display: inline;
+  margin-left: 5px;
+}

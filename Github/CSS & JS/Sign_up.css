@@ -1,0 +1,84 @@
+body {
+  font-family: sans-serif;
+  background: #e7f0ee;
+}
+
+.container {
+  display: flex;
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  background: rgba(8, 142, 142, 0.7);
+  border: 1px solid #ccc;
+  border-radius: 30px;
+  overflow: hidden;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.form {
+  flex: 1;
+  margin-right: 20px;
+  padding: 10px;
+}
+
+.header {
+  text-align: center;
+  font-size: 54px;
+  margin-bottom: 50px;
+  color: #fff;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 30px;
+  text-align: left;
+  margin-top: 0;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.label {
+  display: block;
+  margin-bottom: 5px;
+  color: white;
+}
+
+.input {
+  width: 100%;
+  padding: 5px;
+  border: 1px solid #ccc;
+}
+
+.button {
+  border-radius: 30px;
+  background: #023535;
+  padding: 8px 30px;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: normal;
+  text-align: center;
+  border: none;
+  cursor: pointer;
+  margin-right: 10px;
+  color: white;
+}
+
+.button:hover {
+  background: #0056b3;
+}
+
+.login-button {
+  background-color: #ffffff;
+  font-weight: bold;
+  color: #023535;
+  padding: 8px 58px;
+  text-decoration: none;
+  border-radius: 30px;
+}
+
+.error-message {
+  color: rgb(253, 13, 13);
+}

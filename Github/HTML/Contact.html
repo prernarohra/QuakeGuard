@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='contact.css') }}"
+    />
+
+    <script>
+      function validateForm() {
+        var fname = document.getElementById("fname").value;
+        var lname = document.getElementById("lname").value;
+        var email = document.getElementById("email").value;
+        var message = document.getElementById("message").value;
+
+        if (fname === "" || lname === "" || email === "" || message === "") {
+          alert("Please fill in all required fields");
+          return false;
+        }
+        return true;
+      }
+    </script>
+
+    <script>
+      // Function to toggle dropdown
+      function toggleDropdown() {
+        var dropdown = document.getElementById("dropdownContent");
+        dropdown.style.display =
+          dropdown.style.display === "block" ? "none" : "block";
+      }
+    </script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    />
+  </head>
+  <body>
+    <div class="contact-us">
+      <div class="div">
+        <div class="overlap">
+          <img
+            src="{{ url_for('static', filename='bg_contact.png') }}"
+            style="height: 95%"
+            width="100%"
+          />
+
+          <img
+            class="overlay"
+            src="{{ url_for('static', filename='overlay_contact.png') }}"
+          />
+
+          <div class="form">
+            <div class="form_bg">
+              <div class="subhead">We are available 24/7</div>
+              <div class="heading">Contact Us</div>
+              <form
+                action="https://api.web3forms.com/submit"
+                method="POST"
+                onsubmit="return validateForm()"
+              >
+                <input
+                  type="hidden"
+                  name="access_key"
+                  value="4c528252-a70c-42ae-b432-449ea2ac354e"
+                />
+
+                <input
+                  type="text"
+                  class="fname"
+                  name="fname"
+                  id="fname"
+                  placeholder="First Name"
+                />
+
+                <div class="text-wrapper-3">First Name *</div>
+                <div class="text-wrapper-4">Last Name *</div>
+                <div class="text-wrapper-5">Email *</div>
+                <div class="text-wrapper-6">Message</div>
+                <input
+                  type="text"
+                  class="lname"
+                  name="lname"
+                  id="lname"
+                  placeholder="Last Name"
+                />
+
+                <input
+                  type="email"
+                  class="email"
+                  name="email"
+                  id="email"
+                  placeholder="Email Address"
+                />
+
+                <textarea
+                  class="message"
+                  name="message"
+                  id="message"
+                  placeholder="Your Feedback"
+                ></textarea>
+
+                <button type="submit" class="submit-button">Submit</button>
+              </form>
+            </div>
+          </div>
+        </div>
+        <div class="navbar">
+          <a href="http://127.0.0.1:5000/" class="Home">Home</a>
+          <a href="http://127.0.0.1:5000/about" class="About">About Us</a>
+          <a href="http://127.0.0.1:5000/predictor" class="Predictor"
+            >Predictor</a
+          >
+          <a href="http://127.0.0.1:5000/solutions" class="Solution"
+            >Solution</a
+          >
+          <a href="http://127.0.0.1:5000/destruction" class="Destruction"
+            >Damage</a
+          >
+          <a href="http://127.0.0.1:5000/resources" class="Resources"
+            >Resources</a
+          >
+          <a href="http://127.0.0.1:5000/insurance" class="insurance"
+            >Insurance</a
+          >
+          <a href="http://127.0.0.1:5000/contact" class="contact">Contact Us</a>
+
+          {% if 'email' in session %}
+          <div class="user-initials-circle" onclick="toggleDropdown()">
+            <div class="user-initials">{{ session['email'][0] | upper}}</div>
+          </div>
+          <div class="dropdown-content" id="dropdownContent">
+            <a href="{{ url_for('logout') }}"
+              ><i class="fas fa-sign-out-alt"></i> Sign Out</a
+            >
+          </div>
+
+          {% else %}
+          <a href="{{ url_for('sign_up') }}" id="signupBtn" class="signup"
+            ><div class="signup-wrapper">Sign up</div></a
+          >
+          <a href="{{ url_for('login') }}" id="loginBtn" class="login"
+            ><div class="login-wrapper">Login</div></a
+          >
+
+          {% endif %}
+
+          <a href="http://127.0.0.1:5000/">
+            <img
+              class="image"
+              src="{{ url_for('static', filename='fyp_light logo.svg') }}"
+            />
+          </a>
+        </div>
+        <div class="blue_head">
+          <p class="p">Have Queries? Reach Out To Us</p>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
