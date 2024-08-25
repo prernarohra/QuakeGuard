@@ -1,6 +1,6 @@
-# Earthquake Intensity Minimizer : Minimize the shake, Maximize the safety
+# Earthquake Intensity Minimizer 
 
-It predicts the intensity of an earthquake and mitigate it's impact using ML algorithms.
+Minimize the shake, Maximize the safety
 
 ## Overview
 
@@ -17,7 +17,7 @@ The Earthquake Intensity Minimizer is an AI-based web application designed to mi
 8. Python
 9. MySQL
 
-##Dataset
+## Dataset
 
 The dataset includes five key features: "Intensity" (the dependent feature), "Magnitude," "Victim reaction," "Destruction," and "Depth" (the independent features). The intensity is measured purely based on the Modified Mercalli Intensity (MMI) scale. Extensive research was conducted to ensure that these four independent features are the most impactful in predicting earthquake intensity, making them ideal for inclusion in this dataset. 
 
