@@ -17,7 +17,7 @@ The Earthquake Intensity Minimizer is an AI-based web application designed to mi
 8. Python
 9. MySQL
 
-## Dataset
+## :bar_chart: Dataset
 
 The dataset includes five key features: "Intensity" (the dependent feature), "Magnitude," "Victim reaction," "Destruction," and "Depth" (the independent features). The intensity is measured purely based on the Modified Mercalli Intensity (MMI) scale. Extensive research was conducted to ensure that these four independent features are the most impactful in predicting earthquake intensity, making them ideal for inclusion in this dataset. 
 
