@@ -1,5 +1,4 @@
-# Earthquake Intensity Minimizer
-**Minimize the shake, Maximize the safety**
+# Earthquake Intensity Minimizer : **Minimize the shake, Maximize the safety**
 
 It predicts the intensity of an earthquake and mitigate it's impact using ML algorithms.
 
