@@ -27,6 +27,8 @@ The dataset includes five key features: "Intensity" (the dependent feature), "Ma
 - **Intensity Minimization**: It aims to reduce the impact of earthquakes by three famous japanese standards.
 - **Insurance Plans**: Offers multiple cooperative insurance plans to help cover earthquake-related damage.
 
+## :handshake: Contribution
 
+Contributions are welcome! Please open an issue or submit a pull request for any changes you'd like to see. Please consider giving this project a star on GitHub if you found it useful!
 
 
