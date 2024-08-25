@@ -1,10 +1,10 @@
-# Earthquake Intensity Minimizer : *Minimize the shake, Maximize the safety*
+# Earthquake Intensity Minimizer : Minimize the shake, Maximize the safety
 
 It predicts the intensity of an earthquake and mitigate it's impact using ML algorithms.
 
 ## Overview
 
-The Earthquake Intensity Minimizer is an AI-based web application designed to minimize earthquake intensity, reducing potential loss of life and damage. The application leverages machine learning algorithms to accurately predict earthquake intensity and mitigate its effects, thereby improving readiness for seismic disasters. The project also includes cooperative insurance plans that cover earthquake-related damage.
+The Earthquake Intensity Minimizer is an AI-based web application designed to minimize earthquake intensity, reducing potential loss of life and damage. The application uses machine learning algorithms to accurately predict earthquake intensity and mitigate its effects, thereby improving readiness for seismic disasters. The project also includes cooperative insurance plans that cover earthquake-related damage.
 
 ## Libraries and Tools
 1. Jupyter(notebook)
@@ -14,4 +14,19 @@ The Earthquake Intensity Minimizer is an AI-based web application designed to mi
 5. Pandas
 6. Matplotlib
 7. Seaborn
+8. Python
+9. MySQL
+
+##Dataset
+
+The dataset includes five key features: "Intensity" (the dependent feature), "Magnitude," "Victim reaction," "Destruction," and "Depth" (the independent features). The intensity is measured purely based on the Modified Mercalli Intensity (MMI) scale. Extensive research was conducted to ensure that these four independent features are the most impactful in predicting earthquake intensity, making them ideal for inclusion in this dataset. 
+
+## Features
+
+- **Intensity Prediction**: It Uses machine learning algorithms to predict earthquake intensity with good accuracy.
+- **Intensity Minimization**: It aims to reduce the impact of earthquakes by three famous japanese standards.
+- **Insurance Plans**: Offers multiple cooperative insurance plans to help cover earthquake-related damage.
+
+
+
 
